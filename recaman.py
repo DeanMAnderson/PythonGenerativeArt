@@ -2,9 +2,9 @@
 import turtle
 window = turtle.Screen();
 turtlePen = turtle.Turtle();
-scale = 3;
-speed = 10
-
+scale = 1;
+speed = 20
+colors = ["red", "green", "blue", "yellow", "black", "orange"]
 
 
 
@@ -12,12 +12,15 @@ def init():
     turtlePen.shape("turtle");
     turtlePen.speed(speed);
     screenOffset = turtle.window_width() / 2 * -1;
-    moveTurtle(screenOffset,0)
+    moveTurtle(0,0)
 
 def moveTurtle(x,y):
     turtlePen.penup();
     turtlePen.setpos(x,y);
     turtlePen.pendown();
+
+def setTurtleColorByIndex(index):
+    turtlePen.color(colors[index%len(colors)])
 
 def startRecaman():
     currentIndex = 0;
@@ -25,6 +28,7 @@ def startRecaman():
 
     for index in range(1,200):
         backIndex = currentIndex - index
+        setTurtleColorByIndex(index);
 
         if backIndex > 0 and backIndex not in visited:
             turtlePen.setheading(90);
